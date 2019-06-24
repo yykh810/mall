@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yykh.onemall.mapper.PropertyMapper">
+
+    <resultMap id="Property" type="com.yykh.onemall.pojo.Property">
+        <id column="id" property="id"/>
+        <result property="name" column="name"/>
+        <association property="category" javaType="com.yykh.onemall.pojo.Category">
+            <id column="cid" property="id"/>
+        </association>
+    </resultMap>
+
+    <select id="findAll" resultMap="Property">
+        select * from property where cid =#{id}
+    </select>
+
+    <select id="findOne" resultMap="Property">
+        SELECT * from property where id =#{id}
+    </select>
+</mapper>

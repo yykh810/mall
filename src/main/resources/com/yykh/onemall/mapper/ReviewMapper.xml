@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yykh.onemall.mapper.ReviewMapper">
+
+<resultMap id="Review" type="com.yykh.onemall.pojo.Review">
+    <id property="id" column="id"/>
+    <result property="content" column="content"/>
+    <result property="createDate" column="createDate"/>
+    <association property="prouduct" javaType="com.yykh.onemall.pojo.Product">
+        <id property="id" column="pid"/>
+    </association>
+    <association property="user" javaType="com.yykh.onemall.pojo.User">
+        <id property="id" column="uid"/>
+    </association>
+</resultMap>
+
+<select id="findByProductOrderByIdDesc" resultMap="Review">
+    select * from review where pid =#{id} order by id desc
+</select>
+
+
+
+
+
+</mapper>

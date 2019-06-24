@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yykh.onemall.mapper.ProductMapper">
+
+    <resultMap id="Product"  type="com.yykh.onemall.pojo.Product">
+        <id column="id" property="id"/>
+        <result property="name" column="name"/>
+        <result property="subTitle" column="subTitle"/>
+        <result property="originalPrice" column="originalPrice"/>
+        <result property="promotePrice" column="promotePrice"/>
+        <result property="stock" column="stock"/>
+        <result property="createDate" column="createDate"/>
+        <association property="category"   javaType="com.yykh.onemall.pojo.Category">
+            <id column="cid" property="id"/>
+        </association>
+    </resultMap>
+
+    <select id="findOne" resultMap="Product">
+      SELECT * from product where id =#{id}
+    </select>
+
+    <select id="findAll" resultMap="Product">
+        select * from product where cid =#{id}
+    </select>
+<!--todo-->
+    <select id="fill" resultMap="Product">
+        SELECT * from product where cid =#{id}
+    </select>
+<!--是否重复-->
+    <select id="findByCategoryOrderById" resultMap="Product">
+        select * from product where cid =#{id}
+    </select>
+
+    <select id="listProductByCategory" resultMap="Product">
+        select * from product where cid= #{id}
+    </select>
+
+    <select id="findByNameLike" resultMap="Product">
+        select * from product where name like #{s}
+    </select>
+</mapper>
