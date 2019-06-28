@@ -275,8 +275,6 @@ public class ForeRESTController {
 
     @PostMapping("forecreateOrder")
     public Object createOrder(@RequestBody Order order,HttpSession session){
-        User user =(User)  session.getAttribute("user");
-        if(null==user) return Result.fail("未登录");
         String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
         order.setOrderCode(orderCode);
         order.setCreateDate(new Date());
@@ -294,9 +292,6 @@ public class ForeRESTController {
 
     @GetMapping("forebought")
     public Object bought(HttpSession session) {
-        User user =(User)  session.getAttribute("user");
-        if(null==user)
-            return Result.fail("未登录");
         List<Order> os= orderService.listByUserWithoutDelete(user);
         return os;
     }
