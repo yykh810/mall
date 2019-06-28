@@ -1,7 +1,9 @@
 package com.yykh.onemall.realm;
 
+
 import com.yykh.onemall.pojo.User;
 import com.yykh.onemall.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -24,7 +26,7 @@ public class MyRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-
+        //未引入权限，因此，此处只做简单返回对象，不做权限处理。
         SimpleAuthorizationInfo s = new SimpleAuthorizationInfo();
         return s;
     }
@@ -33,10 +35,17 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String userName = token.getPrincipal().toString();
         User user = userService.getByName(userName);
+        if(user == null) throw new UnknownAccountException();
         String passwordInDB = user.getPassword();
         String salt = user.getSalt();
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userName, passwordInDB, ByteSource.Util.bytes(salt),
-                getName());
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
+            userName, 
+            passwordInDB,
+            ByteSource.Util.bytes(salt),
+            getName() //realm name
+        );
+        Session session = SecurityUtils.getSubject().getSession();
+        session.setAttribute("user", user);
         return authenticationInfo;
     }
 }
