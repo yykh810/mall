@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @Author：yykh
- * @Descripton:
+ * @Descripton:返回封装好的结果，包括其执行状态，额外的信息，返回值。
  */
 @Data
 public class Result {
