@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 /**
  * @Author：yykh
- * @Descripton:
+ * @Descripton:比较器，用于在商品页面按综合对商品进行排序时的比较。
  */
 
 public class ProductAllComparator implements Comparator<Product> {
