@@ -2,6 +2,7 @@ package com.yykh.onemall.service;
 
 import com.github.pagehelper.PageInfo;
 import com.yykh.onemall.mapper.ProductImageMapper;
+import com.yykh.onemall.pojo.OrderItem;
 import com.yykh.onemall.pojo.Product;
 import com.yykh.onemall.pojo.ProductImage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,13 @@ public class ProductImageService {
         for (Product product : products.getList())
             setFirstProductImage(product);
     }
+
+    public void setFirstProdutImagesOnOrderItems(List<OrderItem> ois) {
+        for (OrderItem orderItem : ois) {
+            setFirstProductImage(orderItem.getProduct());
+        }
+    }
+
 
 
 }

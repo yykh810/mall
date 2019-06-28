@@ -8,8 +8,6 @@ import com.yykh.onemall.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.lang.model.type.ArrayType;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,12 +45,12 @@ public class OrderItemService {
         float total = 0;
         int totalNumber = 0;
         for (OrderItem oi :orderItems) {
-            Product product =productService.get(oi.getProuduct().getId());
+            Product product =productService.get(oi.getProduct().getId());
             int number = oi.getNumber();
             total+=number*(product.getPromotePrice());
             totalNumber+= number;
             oi.setNumber(number);
-            oi.setProuduct(product);
+            oi.setProduct(product);
             productImageService.setFirstProductImage(product);
         }
         order.setTotal(total);
@@ -79,8 +77,36 @@ public class OrderItemService {
         return result;
     }
 
-    public List<OrderItem> listByUser(User user) {
+    public List<OrderItem> getOrderItemsWithNoOrderByUser(User user) {
         return orderItemMapper.findByUserAndOrderIsNull(user);
+    }
+
+    /**
+     * 注意！只更新其中的number。
+     * @param oi
+     */
+    public void update(OrderItem oi) {
+        orderItemMapper.update(oi);
+    }
+
+    public void add(OrderItem oi) {
+        orderItemMapper.add(oi);
+    }
+
+    public OrderItem get(int id) {
+        return orderItemMapper.findById(id);
+    }
+
+    public void delete(int oiid) {
+        orderItemMapper.delete(oiid);
+    }
+
+    public  float calculateTotalForOrderItems(List<OrderItem> orderItems){
+        float total = 0;
+        for( OrderItem oi: orderItems){
+            total+=oi.getProduct().getPromotePrice()*oi.getNumber();
+        }
+        return total;
     }
 
 }

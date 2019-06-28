@@ -57,14 +57,14 @@
                 <img id="cateye" class="cateye" src="img/site/cateye.png">
                 <div class="white_link" >
                     <a href="#nowhere" style="padding-left:0px" >关于天猫</a>
-                    <a href="#nowhere" > 帮助中心</a>
+                    <a href="#nowhere" >帮助中心</a>
                     <a href="#nowhere" >开放平台</a>
-                    <a href="#nowhere" >  诚聘英才</a>
+                    <a href="#nowhere" >诚聘英才</a>
                     <a href="#nowhere" >联系我们</a>
                     <a href="#nowhere" >网站合作</a>
                     <a href="#nowhere" >法律声明</a>
                     <a href="#nowhere" >知识产权</a>
-                    <a href="#nowhere" >  廉正举报    </a>
+                    <a href="#nowhere" >廉正举报</a>
                 </div>
                 <div class="white_link" >
                     <a href="#nowhere"  style="padding-left:0px" > 阿里巴巴集团</a><span class="slash">|</span>

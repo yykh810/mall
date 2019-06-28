@@ -43,7 +43,7 @@
                             var result = response.data;
                             if(0==result.code){
                                 $(".addCartButton").html("已加入购物车");
-                                $(".addCartButton").attr("disabled","disabled");
+                                $(".addCartButton").attr("disabled","true");
                                 $(".addCartButton").css("background-color","lightgray")
                                 $(".addCartButton").css("border-color","lightgray")
                                 $(".addCartButton").css("color","black")
@@ -208,7 +208,7 @@
 
             <div class="buyDiv">
                 <a class="buyLink" ><button class="buyButton" >立即购买</button></a>
-                <a href="#nowhere" class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
+                <a href="#nowhere" class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-shoppingCart"></span>加入购物车</button></a>
             </div>
         </div>
 

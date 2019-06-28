@@ -6,10 +6,12 @@ import com.github.pagehelper.PageInfo;
 import com.yykh.onemall.mapper.ProductMapper;
 import com.yykh.onemall.pojo.Category;
 import com.yykh.onemall.pojo.DTO.CategoryWithProducts;
+import com.yykh.onemall.pojo.OrderItem;
 import com.yykh.onemall.pojo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +29,13 @@ public class ProductService {
     @Autowired
     OrderItemService orderItemService;
 
+    private static ProductMapper productMapperTwo;
+
+    @PostConstruct
+    public void init(){
+        productMapperTwo=productMapper;
+    }
+
     public void add(Product bean) {
         productMapper.save(bean);
     }
@@ -35,7 +44,7 @@ public class ProductService {
         productMapper.delete(id);
     }
 
-    public Product get(int id) {
+    public  Product get(int id) {
         return productMapper.findOne(id);
     }
 
@@ -106,5 +115,14 @@ public class ProductService {
         Page<Product> pro =productMapper.findByNameLike("%"+keyword+"%");
         PageInfo<Product> page = new PageInfo<>(pro);
         return page;
+    }
+
+    public void fillProductAndFirstProductImageForOrderItems(List<OrderItem> orderItems){
+        for ( OrderItem oi : orderItems ){
+            Product product = get(oi.getProduct().getId());
+            oi.setProduct(product);
+            productImageService.setFirstProductImage(product);
+        }
+
     }
 }

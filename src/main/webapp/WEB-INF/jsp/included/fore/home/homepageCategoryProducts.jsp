@@ -10,8 +10,7 @@
                 <a :href="'product?pid='+p.id">
                     <img width="100px" :src="'img/productSingle_middle/'+p.firstProductImage.id+'.jpg'">
                 </a>
-
-                <a class="productItemDescLink" href="'product?pid='+p.id">
+                <a class="productItemDescLink" :href="'product?pid='+p.id">
                     <span class="productItemDesc">[热销]
                     {{p.name | subStringFilter(0,20)}}
                     </span>

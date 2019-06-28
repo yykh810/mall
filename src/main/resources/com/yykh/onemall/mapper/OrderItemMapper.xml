@@ -9,7 +9,7 @@
     <result property="uid" column="uid"/>
     <result property="number" column="number"/>
     <result property="oid" column="oid"/>
-    <association property="prouduct" javaType="com.yykh.onemall.pojo.Product">
+    <association property="product" javaType="com.yykh.onemall.pojo.Product">
         <id property="id" column="pid"/>
     </association>
 </resultMap>
@@ -22,6 +22,23 @@
     select * from orderitem where pid=#{id}
 </select>
 
+<select id="findByUserAndOrderIsNull"  resultMap="OrderItem">
+    SELECT * from orderitem where oid is null and uid =#{id};
+</select>
 
+<update id="update" >
+    update orderitem set number=#{number}, oid = #{oid} where id =#{id}
+</update>
 
+<insert id="add" keyProperty="id">
+    INSERT  into orderitem(pid,uid,number) values(#{product.id},#{uid},#{number})
+</insert>
+
+<select id="findById"  resultMap="OrderItem">
+    SELECT * from orderitem where id =#{id}
+</select>
+
+<delete id="delete" >
+   DELETE FROM orderitem where id =#{oiid}
+</delete>
 </mapper>

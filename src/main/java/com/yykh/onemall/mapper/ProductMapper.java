@@ -24,7 +24,6 @@ public interface ProductMapper {
 
     Product findOne(int id);
 
-
     Page<Product> findAll(Category category);
 
     void fill(Category category);

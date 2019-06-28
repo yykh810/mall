@@ -1,6 +1,5 @@
 package com.yykh.onemall.controller.fore;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -32,7 +31,7 @@ public class ForePageController {
     }
     @GetMapping(value="/bought")
     public String bought(){
-        return "fore/bought";
+        return "fore/order";
     }
     @GetMapping(value="/buy")
     public String buy(){

@@ -27,14 +27,7 @@
     <span class="pull-right">
             <a href="bought">我的订单</a>
             <a href="cart">
-            <span style="color:#C40000;margin:0px" class=" glyphicon glyphicon-shopping-cart redColor"></span>
-                <c:choose >
-                    <c:when test="${sessionScope.cartTotalItemNumber} != null &&${sessionScope.cartTotalItemNumber}!=0">
-                        购物车<strong>${sessionScope.cartTotalItemNumber}</strong>件</a>
-                    </c:when>
-                    <c:otherwise>
-                        购物车<strong>空</strong></a>
-                    </c:otherwise>
-                </c:choose>
+            <span style="color:#C40000;margin:0px" class=" glyphicon glyphicon-shopping-shoppingCart redColor"></span>
+                购物车<strong>{{ cartTotalItemNumber}}</strong>件</a>
     </span>
 </nav>
