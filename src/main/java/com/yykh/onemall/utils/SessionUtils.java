@@ -16,9 +16,9 @@ import java.util.List;
 
 /**
  * @Author：yykh
- * @Descripton:
+ * @Descripton:会话工具类，实现会话操作的封装，包括对购物车，用户信息，生成订单中包含的商品等的操作。
  */
-//为了解决在static方法中调用field
+
 @Component
 public class SessionUtils {
 
@@ -54,7 +54,8 @@ public class SessionUtils {
                 List<OrderItem> orderItems = orderItemServiceTwo.getOrderItemsWithNoOrderByUser(user);
                 productServiceTwo.fillProductAndFirstProductImageForOrderItems(orderItems);
                 float total = orderItemServiceTwo.calculateTotalForOrderItems(orderItems);
-                shoppingCart = new ShoppingCart(orderItems,total);//创建新的购物车模型
+                //创建新的购物车模型
+                shoppingCart = new ShoppingCart(orderItems,total);
                 session.setAttribute("shoppingCart", shoppingCart);
             }
         }catch(Exception e){
